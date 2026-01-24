@@ -1,22 +1,29 @@
-FROM alpine:3.23.2
+# Use Debian-slim for glibc compatibility
+FROM python:3.12-slim
 
-# You need ALL of these to compile OpenCV
-RUN apk add --no-cache \
-    python3-dev \
-    build-base \
-    cmake \
-    clang-dev \
-    linux-headers \
-    libffi-dev \
-    musl-dev \
-    openblas-dev \
-    libjpeg-turbo-dev \
-    libpng-dev \
-    uv
+# 1. Install system dependencies for OpenCV and RKNN
+# libgl1 and libglib2.0 are required for cv2 to run
+RUN apt-get update && apt-get install -y \
+    libgl1 \
+    libglib2.0-0 \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
+# 2. Grab uv from the official image
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+# 3. Setup workspace
 WORKDIR /app
-COPY . .
 
+# 4. Copy dependency files
+COPY pyproject.toml uv.lock ./
+
+# 5. Install dependencies
+# On Debian, uv will now find the 'manylinux' wheels for ARM64 instantly
 RUN uv sync --frozen --system
 
-CMD ["python", "main.py"]
+# 6. Copy your code and the ONNX model
+COPY . .
+
+# 7. Run the export
+CMD ["python", "app/main.py"]
