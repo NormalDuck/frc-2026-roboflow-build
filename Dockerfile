@@ -1,13 +1,22 @@
-FROM python:3.12-slim
+FROM alpine:3.23.2
 
-RUN apk add --no-cache python3 py3-pip uv
+# You need ALL of these to compile OpenCV
+RUN apk add --no-cache \
+    python3-dev \
+    build-base \
+    cmake \
+    clang-dev \
+    linux-headers \
+    libffi-dev \
+    musl-dev \
+    openblas-dev \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    uv
 
 WORKDIR /app
-
-COPY pyproject.toml uv.lock ./
-
-RUN uv sync
-
 COPY . .
+
+RUN uv sync --frozen --system
 
 CMD ["python", "main.py"]
