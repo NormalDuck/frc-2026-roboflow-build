@@ -1,24 +1,25 @@
-# STAGE 1: The Builder (uses the specialized uv image)
-FROM ghcr.io/astral-sh/uv:latest AS builder
+# STAGE 1: Builder
+# Using the 'python3.12-slim' version of uv gives us a shell and Python
+FROM ghcr.io/astral-sh/uv:python3.12-slim AS builder
 
-# Set up the workspace
 WORKDIR /app
 
-# Enable bytecode compilation for extra speed
+# Enable bytecode compilation and fix link mode for Docker
 ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
 
-# Copy your dependency files
+# Copy dependency files
 COPY pyproject.toml uv.lock ./
 
-# Install dependencies into a specific folder (/app/.venv)
-# We use --frozen to ensure the lockfile isn't changed
-RUN uv sync --frozen --no-dev
+# Install dependencies into /app/.venv
+# This works now because this image has /bin/sh
+RUN uv sync --frozen --no-dev --no-install-project
 
 
-# STAGE 2: The Final Image (the slim Linux you actually want)
+# STAGE 2: Final Runtime
 FROM python:3.12-slim
 
-# Install the minimal runtime libs for OpenCV/RKNN
+# Install runtime libs for OpenCV/RKNN
 RUN apt-get update && apt-get install -y \
     libgl1 \
     libglib2.0-0 \
@@ -26,14 +27,14 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# MAGIC STEP: Copy ONLY the installed packages from the builder stage
-# This keeps the final image tiny (no uv, no build tools, just the apps)
+# Copy the virtual environment from the builder
 COPY --from=builder /app/.venv /app/.venv
 
 # Copy your source code
 COPY . .
 
-# Set the path to use the virtual environment we copied
+# Ensure the app uses the virtual environment's python/packages
 ENV PATH="/app/.venv/bin:$PATH"
 
-CMD ["python", "app/main.py"]
+# If main.py is in an 'app' folder, use: CMD ["python", "app/main.py"]
+CMD ["python", "main.py"]
