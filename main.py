@@ -1,6 +1,8 @@
-def main():
-    print("Hello from model-docker-image!")
+from ultralytics.models.yolo import YOLO
 
+model = YOLO("best.onnx")
 
-if __name__ == "__main__":
-    main()
+results = model.predict(
+    source="0",
+    conf=0.6,
+)
