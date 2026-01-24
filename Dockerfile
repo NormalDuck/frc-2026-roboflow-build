@@ -45,4 +45,4 @@ COPY --from=builder /app /app
 ENV PATH="/app/.venv/bin:$PATH"
 
 # Run your application
-CMD ["python", "main.py"]
+CMD ["python", "host_scripts/main.py"]
