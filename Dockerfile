@@ -4,13 +4,11 @@ FROM python:3.12-slim
 # 1. Install system dependencies for OpenCV and RKNN
 # libgl1 and libglib2.0 are required for cv2 to run
 RUN apt-get update && apt-get install -y \
+    uv \
     libgl1 \
     libglib2.0-0 \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
-
-# 2. Grab uv from the official image
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 # 3. Setup workspace
 WORKDIR /app
