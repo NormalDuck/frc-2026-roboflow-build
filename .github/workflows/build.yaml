@@ -31,9 +31,9 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/arm64
           push: true
           # Replace 'your-username' with your actual Docker Hub username
           tags: |
-            your-username/rknn-exporter:latest
-            your-username/rknn-exporter:${{ github.sha }}
+            1juhuang2/rknn-exporter:latest
+            1juhuang2/rknn-exporter:${{ github.sha }}
