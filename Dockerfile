@@ -26,7 +26,7 @@ RUN uv sync --frozen --no-dev
 
 
 # ---------- Stage 2: Runtime ----------
-FROM python:3.12-slim-bookworm AS runtime
+FROM kobeeeef/xdash-alt-base-image:today
 
 # Install Debian system dependencies for OpenCV
 # Even 'headless' needs some basic shared libraries
