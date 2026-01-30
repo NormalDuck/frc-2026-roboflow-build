@@ -16,5 +16,5 @@ RUN pip install --no-cache-dir --upgrade pip && \
     RUN pip install rknn-toolkit-lite2==2.3.0 --no-cache-dir && \
     pip install pynetworktables
 
-COPY ./src/assets/librknnrt.so /usr/lib/librknnrt.so
+# COPY ./src/assets/librknnrt.so /usr/lib/librknnrt.so
 WORKDIR /xbot/Alt/src
