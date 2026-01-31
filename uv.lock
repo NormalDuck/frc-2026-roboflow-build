@@ -631,6 +631,7 @@ dependencies = [
     { name = "onnxruntime" },
     { name = "opencv-python-headless" },
     { name = "pynetworktables" },
+    { name = "rknn-toolkit-lite2" },
     { name = "ultralytics" },
 ]
 
@@ -640,6 +641,7 @@ requires-dist = [
     { name = "onnxruntime" },
     { name = "opencv-python-headless" },
     { name = "pynetworktables" },
+    { name = "rknn-toolkit-lite2", specifier = "==2.3.0" },
     { name = "ultralytics" },
 ]
 
@@ -1258,6 +1260,31 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/c9/74/b3ff8e6c8446842c3f5c837e9c3dfcfe2018ea6ecef224c710c85ef728f4/requests-2.32.5.tar.gz", hash = "sha256:dbba0bac56e100853db0ea71b82b4dfd5fe2bf6d3754a8893c3af500cec7d7cf", size = 134517, upload-time = "2025-08-18T20:46:02.573Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl", hash = "sha256:2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6", size = 64738, upload-time = "2025-08-18T20:46:00.542Z" },
+]
+
+[[package]]
+name = "rknn-toolkit-lite2"
+version = "2.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy" },
+    { name = "psutil" },
+    { name = "ruamel-yaml" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ed/77/6af374a4a8cd2aee762a1fb8a3050dcf3f129134bbdc4bb6bed755c4325b/rknn_toolkit_lite2-2.3.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4b6733689bd09a262bcb6ba4744e690dd4b37ebeac4ed427cf45242c4b4ce9a4", size = 559372, upload-time = "2024-11-11T03:51:20.599Z" },
+    { url = "https://files.pythonhosted.org/packages/9b/0c/76ff1eb09d09ce4394a6959d2343a321d28dd9e604348ffdafceafdc344c/rknn_toolkit_lite2-2.3.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:e3e4fefe355dc34a155680e4bcb9e4abb37ebc271f045ec9e0a4a3a018bc5beb", size = 569149, upload-time = "2024-11-11T03:51:22.838Z" },
+    { url = "https://files.pythonhosted.org/packages/0d/6e/8679562028051b02312212defc6e8c07248953f10dd7ad506e941b575bf3/rknn_toolkit_lite2-2.3.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:37394371d1561f470c553f39869d7c35ff93405dffe3d0d72babf297a2b0aee9", size = 527457, upload-time = "2024-11-11T03:51:25.456Z" },
+    { url = "https://files.pythonhosted.org/packages/b3/7f/d90211ea7e201eb3d1f86aff0e5d441eeebbe125edc4c2049767425f9caa/rknn_toolkit_lite2-2.3.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:728f574be91df6c78019fd9241cf2a8331adf74f6bb807e33a0b45e20a1f31a0", size = 559831, upload-time = "2024-11-11T03:51:33.285Z" },
+]
+
+[[package]]
+name = "ruamel-yaml"
+version = "0.19.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/c7/3b/ebda527b56beb90cb7652cb1c7e4f91f48649fbcd8d2eb2fb6e77cd3329b/ruamel_yaml-0.19.1.tar.gz", hash = "sha256:53eb66cd27849eff968ebf8f0bf61f46cdac2da1d1f3576dd4ccee9b25c31993", size = 142709, upload-time = "2026-01-02T16:50:31.84Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/b8/0c/51f6841f1d84f404f92463fc2b1ba0da357ca1e3db6b7fbda26956c3b82a/ruamel_yaml-0.19.1-py3-none-any.whl", hash = "sha256:27592957fedf6e0b62f281e96effd28043345e0e66001f97683aa9a40c667c93", size = 118102, upload-time = "2026-01-02T16:50:29.201Z" },
 ]
 
 [[package]]
