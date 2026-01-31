@@ -4,12 +4,11 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 # We narrow this to ensure no 3.10+ dependencies are picked up
-requires-python = ">=3.9"
+requires-python = "==3.9.*"
 dependencies = [
     "onnx",
     "onnxruntime",
     "opencv-python-headless",
     "ultralytics",
     "pynetworktables",
-    "rknn-toolkit-lite2==2.3.0",
 ]
