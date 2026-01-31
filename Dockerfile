@@ -1,15 +1,21 @@
-ARG TARGETPLATFORM
 FROM kobeeeef/xdash-alt-base-image:today
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y --no-install-recommends build-essential && \
-    rm -rf /var/lib/apt/lists/* && apt-get clean
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    python3-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt /app/requirements.txt
+# Copy requirements directly
+COPY ./requirements.txt /app/requirements.txt
 
-RUN pip install --no-cache-dir --prefer-binary -r requirements.txt
+# Upgrade pip and install
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
+# Debug print to build logs
 RUN pip list
 
-WORKDIR /app
+COPY . /app
