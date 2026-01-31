@@ -8,7 +8,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends build-essential
 
 COPY requirements.txt /xbot/Alt/requirements.txt
 
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir --prefer-binary -r requirements.txt && \
+RUN pip install --no-cache-dir --prefer-binary -r requirements.txt
 
 WORKDIR /xbot/Alt/src
