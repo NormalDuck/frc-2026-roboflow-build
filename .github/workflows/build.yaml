@@ -33,6 +33,3 @@ jobs:
           tags: |
             1juhuang2/rknn-exporter:latest
             1juhuang2/rknn-exporter:${{ github.sha }}
-
-      - name: List Packages
-        run: pip list

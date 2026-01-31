@@ -10,4 +10,6 @@ COPY requirements.txt /xbot/Alt/requirements.txt
 
 RUN pip install --no-cache-dir --prefer-binary -r requirements.txt
 
+RUN pip list
+
 WORKDIR /app
